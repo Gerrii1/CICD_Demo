@@ -1,0 +1,40 @@
+name: Selenuim IDE CI
+
+on:
+  puch:
+    braanches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubunto-latest  
+
+    steps:
+    - name: Checkout code  
+      uses: actions/checkout@v3
+
+    - name: Set up .NET CORE
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-vrsion: '6.0.x'
+    - name: Install Chrome
+      run: 
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-atable
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Run tests
+      evn:
+        CHROMEWEBDRIVER: /usr/bin/google-chrome
+      run: dotnet test --verbosity normal
+
+     
+
+  
