@@ -1,7 +1,7 @@
 name: Selenuim IDE CI
 
 on:
-  puch:
+  push:
     braanches:
       - main
   pull_request:
