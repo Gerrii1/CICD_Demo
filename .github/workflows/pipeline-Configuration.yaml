@@ -31,8 +31,6 @@ jobs:
       run: dotnet build --no-restore
 
     - name: Run tests
-      evn:
-        CHROMEWEBDRIVER: /usr/bin/google-chrome
       run: dotnet test --verbosity normal
 
      
